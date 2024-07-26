@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } else {
       setState(() {
-        _passwordError = 'Please Enter correct password';
+        _passwordError = 'Please enter the correct password';
       });
     }
   }
@@ -122,10 +122,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: Color(0xff55555A),
                               ),
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             TextField(
                               controller: _usernameController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 0, vertical: 0),
                                 enabledBorder: OutlineInputBorder(
@@ -164,7 +164,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(color: Colors.grey.shade300),
+                        border: Border.all(
+                          color: _passwordError.isEmpty
+                              ? Colors.grey.shade300
+                              : Colors.red,
+                        ),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Padding(
@@ -187,38 +191,46 @@ class _LoginScreenState extends State<LoginScreen> {
                               controller: _passwordController,
                               obscureText: true,
                               decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 0,
-                                  vertical: 0,
-                                ),
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.transparent),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(16),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 0,
+                                    vertical: 0,
                                   ),
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: _passwordError.isEmpty
+                                          ? Colors.transparent
+                                          : Colors.red,
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(16),
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(16),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: _passwordError.isEmpty
+                                          ? Colors.transparent
+                                          : Colors.red,
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(16),
+                                    ),
                                   ),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                hintText: "eg. Password",
-                                hintStyle: const TextStyle(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 16,
-                                  letterSpacing: 0.15,
-                                  color: Color(0xffA3A2AF),
-                                ),
-                                errorText: _passwordError.isEmpty
-                                    ? null
-                                    : _passwordError,
-                              ),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: "eg. Password",
+                                  hintStyle: const TextStyle(
+                                    fontFamily: 'Manrope',
+                                    fontSize: 16,
+                                    letterSpacing: 0.15,
+                                    color: Color(0xffA3A2AF),
+                                  ),
+                                  errorText: _passwordError.isEmpty
+                                      ? null
+                                      : _passwordError,
+                                  errorStyle: const TextStyle(
+                                      color: Color(0xffEA3636),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500)),
                             ),
                           ],
                         ),
@@ -314,7 +326,7 @@ class NextPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Next Page')),
-      body: Text("aao"),
+      body: const Center(child: Text("Next Page")),
     );
   }
 }
