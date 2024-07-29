@@ -1,5 +1,8 @@
+import 'package:assignment/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:assignment/components/custom_text_field.dart';
+import 'package:assignment/components/custom_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   String _passwordError = '';
 
-  // Temporary user credentials
+  //fake user
   final String _tempUsername = 'user';
   final String _tempPassword = 'password';
 
@@ -35,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (username == _tempUsername && password == _tempPassword) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const NextPage()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     } else {
       setState(() {
@@ -100,141 +103,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 24),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Enter Username",
-                              style: TextStyle(
-                                fontSize: 16,
-                                letterSpacing: 0.5,
-                                fontFamily: 'Manrope',
-                                color: Color(0xff55555A),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            TextField(
-                              controller: _usernameController,
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 0),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(16),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(16),
-                                  ),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                hintText: "eg. John Doe",
-                                hintStyle: TextStyle(
-                                  fontFamily: 'Manrope',
-                                  fontSize: 16,
-                                  letterSpacing: 0.15,
-                                  color: Color(0xffA3A2AF),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    child: CustomTextField(
+                      controller: _usernameController,
+                      labelText: 'Enter Username',
+                      hintText: 'eg. John Doe',
+                      hasError: false,
                     ),
                   ),
                   const SizedBox(height: 16),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: _passwordError.isEmpty
-                              ? Colors.grey.shade300
-                              : Colors.red,
-                        ),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Enter Password",
-                              style: TextStyle(
-                                fontSize: 16,
-                                letterSpacing: 0.5,
-                                fontFamily: 'Manrope',
-                                color: Color(0xff55555A),
-                              ),
-                            ),
-                            TextField(
-                              controller: _passwordController,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 0,
-                                    vertical: 0,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: _passwordError.isEmpty
-                                          ? Colors.transparent
-                                          : Colors.red,
-                                    ),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(16),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: _passwordError.isEmpty
-                                          ? Colors.transparent
-                                          : Colors.red,
-                                    ),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(16),
-                                    ),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: "eg. Password",
-                                  hintStyle: const TextStyle(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 16,
-                                    letterSpacing: 0.15,
-                                    color: Color(0xffA3A2AF),
-                                  ),
-                                  errorText: _passwordError.isEmpty
-                                      ? null
-                                      : _passwordError,
-                                  errorStyle: const TextStyle(
-                                      color: Color(0xffEA3636),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                          ],
-                        ),
-                      ),
+                    child: CustomTextField(
+                      controller: _passwordController,
+                      labelText: 'Enter Password',
+                      hintText: 'eg. Password',
+                      obscureText: true,
+                      errorText: _passwordError.isEmpty ? null : _passwordError,
+                      hasError: _passwordError.isNotEmpty,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -258,31 +143,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 32),
                   Center(
-                    child: Container(
-                      width: 310,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: const Color(0xff0461E5),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: TextButton(
-                        onPressed: _login,
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          backgroundColor: const Color(0xff0461E5),
-                        ),
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
-                              fontFamily: 'Manrope',
-                              color: Colors.white,
-                              fontSize: 14,
-                              letterSpacing: 0.1,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
+                    child: CustomButton(
+                      text: "Login",
+                      onPressed: _login,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -316,17 +179,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     }
-  }
-}
-
-class NextPage extends StatelessWidget {
-  const NextPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Next Page')),
-      body: const Center(child: Text("Next Page")),
-    );
   }
 }
