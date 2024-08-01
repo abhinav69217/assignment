@@ -1,5 +1,5 @@
-import 'package:assignment/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:assignment/screens/login_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,7 +13,9 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: LoginScreen(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Manrope'),
+      theme: ThemeData(
+        fontFamily: 'Manrope',
+      ),
     );
   }
 }

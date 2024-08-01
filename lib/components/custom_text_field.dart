@@ -32,7 +32,6 @@ class CustomTextField extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               labelText,
@@ -49,17 +48,11 @@ class CustomTextField extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: hasError ? Colors.red : Colors.transparent),
-                  borderRadius: const BorderRadius.all(Radius.circular(16)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: hasError ? Colors.red : Colors.transparent),
-                  borderRadius: const BorderRadius.all(Radius.circular(16)),
-                ),
-                filled: true,
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                filled: false,
                 fillColor: Colors.white,
                 hintText: hintText,
                 hintStyle: const TextStyle(

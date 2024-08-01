@@ -17,14 +17,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   String _passwordError = '';
 
-  //fake user
+  // Fake user credentials
   final String _tempUsername = 'user';
   final String _tempPassword = 'password';
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1200), () {
+    Future.delayed(const Duration(milliseconds: 1800), () {
       setState(() {
         _loading = false;
       });
@@ -34,11 +34,14 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() {
     final username = _usernameController.text.trim();
     final password = _passwordController.text.trim();
+    String capitalize(String s) =>
+        s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
 
     if (username == _tempUsername && password == _tempPassword) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(
+            builder: (context) => HomeScreen(username: capitalize(username))),
       );
     } else {
       setState(() {
@@ -85,15 +88,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           "Let's Go",
                           style: TextStyle(
                             fontSize: 34,
-                            color: Color(0xFF181636),
                             fontWeight: FontWeight.w800,
-                            letterSpacing: .25,
+                            color: Color(0xFF181636),
                           ),
                         ),
                         SizedBox(height: 4),
                         Text(
                           "Please enter your credentials to log in",
                           style: TextStyle(
+                            fontSize: 16,
                             color: Color(0xff55555A),
                           ),
                         ),
@@ -131,11 +134,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           'Forgot Password?',
                           style: TextStyle(
-                            fontFamily: 'Manrope',
                             fontSize: 12,
                             letterSpacing: 0.4,
                             color: Color(0xff0461E5),
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],
@@ -155,14 +157,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: "Don’t have an account? ",
                         style: TextStyle(
                           fontFamily: 'Manrope',
-                          fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                           color: Color(0xFF55555A),
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'sign up',
+                            text: 'Sign up',
                             style: TextStyle(
                               fontFamily: 'Manrope',
                               color: Color(0xff0461E5),
