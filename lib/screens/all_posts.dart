@@ -12,7 +12,7 @@ class _AllPostsState extends State<AllPosts> {
     {
       "username": "John Doe",
       "date": "30 July 2024",
-      "content": "This is the first post!",
+      "title": "This is the first post!",
       "imageUrl": "assets/post.png",
       "caption": "Caption will be here",
       "comments": [
@@ -27,7 +27,7 @@ class _AllPostsState extends State<AllPosts> {
     {
       "username": "Jane Smith",
       "date": "24 July 2024",
-      "content": "Loving the new update!",
+      "title": "Loving the new update!",
       "imageUrl": "",
       "caption": "Had a wonderful day exploring new places.",
       "comments": ["So glad you enjoyed it!", "Where did you go?"],
@@ -35,7 +35,7 @@ class _AllPostsState extends State<AllPosts> {
     {
       "username": "Jane Smith",
       "date": "24 July 2024",
-      "content": "Loving the new update!",
+      "title": "Loving the new update!",
       "imageUrl": "",
       "caption": "Had a wonderful day exploring new places.",
       "comments": ["So glad you enjoyed it!", "Where did you go?"],
@@ -43,7 +43,7 @@ class _AllPostsState extends State<AllPosts> {
     {
       "username": "Jane Smith",
       "date": "24 July 2024",
-      "content": "Loving the new update!",
+      "title": "Loving the new update!",
       "imageUrl": "assets/post.png",
       "caption": "Had a wonderful day exploring new places.",
       "comments": ["So glad you enjoyed it!", "Where did you go?"],
@@ -51,7 +51,7 @@ class _AllPostsState extends State<AllPosts> {
     {
       "username": "Jane Smith",
       "date": "24 July 2024",
-      "content": "Loving the new update!",
+      "title": "Loving the new update!",
       "imageUrl": "",
       "caption": "Had a wonderful day exploring new places.",
       "comments": ["So glad you enjoyed it!", "Where did you go?"],
@@ -59,7 +59,7 @@ class _AllPostsState extends State<AllPosts> {
     {
       "username": "Jane Smith",
       "date": "24 July 2024",
-      "content": "Loving the new update!",
+      "title": "Loving the new update!",
       "imageUrl": "",
       "caption": "Had a wonderful day exploring new places.",
       "comments": ["So glad you enjoyed it!", "Where did you go?"],
@@ -67,7 +67,7 @@ class _AllPostsState extends State<AllPosts> {
     {
       "username": "Jane Smith",
       "date": "24 July 2024",
-      "content": "Loving the new update!",
+      "title": "Loving the new update!",
       "imageUrl": "assets/post.png",
       "caption": "Had a wonderful day exploring new places.",
       "comments": ["So glad you enjoyed it!", "Where did you go?"],
@@ -392,7 +392,7 @@ class _AllPostsState extends State<AllPosts> {
                     ),
                     elevation: 5,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -447,7 +447,6 @@ class _AllPostsState extends State<AllPosts> {
                               fit: BoxFit.cover,
                             ),
                           const SizedBox(height: 8),
-
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 10.0),
@@ -503,16 +502,28 @@ class _AllPostsState extends State<AllPosts> {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          // Caption
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text(
-                              post["caption"] ?? '',
-                              style: const TextStyle(
-                                  color: Color(0xff55555A),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14),
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  post['title'] ?? '',
+                                  style: const TextStyle(
+                                      color: Color(0xff55555A),
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  post["caption"] ?? '',
+                                  style: const TextStyle(
+                                      color: Color(0xff55555A),
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 14),
+                                ),
+                              ],
                             ),
                           ),
                         ],
